@@ -9,6 +9,7 @@ describe Paypal::Payment::Request do
       :currency_code => :JPY,
       :description => 'Instant Payment Request',
       :notify_url => 'http://merchant.example.com/notify',
+      :no_shipping => 1,
       :items => [{
         :quantity => 2,
         :name => 'Item1',
@@ -47,6 +48,7 @@ describe Paypal::Payment::Request do
       instant_request.currency_code.should == :JPY
       instant_request.description.should == 'Instant Payment Request'
       instant_request.notify_url.should == 'http://merchant.example.com/notify'
+      instant_request.no_shipping.should == 1
     end
 
     it 'should handle Recurring Payment parameters' do
@@ -72,6 +74,7 @@ describe Paypal::Payment::Request do
         :PAYMENTREQUEST_0_DESC => "Instant Payment Request", 
         :PAYMENTREQUEST_0_NOTIFYURL => "http://merchant.example.com/notify",
         :PAYMENTREQUEST_0_ITEMAMT => "23.80",
+        :NOSHIPPING => 1,
         :L_PAYMENTREQUEST_0_NAME0 => "Item1",
         :L_PAYMENTREQUEST_0_DESC0 => "Awesome Item 1!",
         :L_PAYMENTREQUEST_0_AMT0 => "10.25",
